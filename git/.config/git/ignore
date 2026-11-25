@@ -1,0 +1,5 @@
+# 全域 gitignore：所有 repo 都忽略
+.DS_Store
+*.swp
+*~
+.direnv/

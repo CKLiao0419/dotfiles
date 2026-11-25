@@ -1,0 +1,57 @@
+# starship 純文字版 —— 給 Linux TTY / 沒有 Nerd Font 的終端
+# 只用 ASCII 和 16 色名稱，R50e、eeePC 開機進 TTY 也能正常顯示
+add_newline = true
+
+format = """
+$username$hostname$directory$git_branch$git_status$python$cmd_duration$status
+$character"""
+
+[username]
+style_user = "purple"
+style_root = "bold red"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false          # TTY 通常就是那台老機器本身，顯示主機名稱方便辨認
+style = "purple"
+format = "[@$hostname]($style) "
+
+[directory]
+style = "bold cyan"
+read_only = " [ro]"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = ".../"
+
+[git_branch]
+symbol = "git:"
+style = "green"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "yellow"
+format = "([$all_status$ahead_behind]($style) )"
+ahead = "+${count}"
+behind = "-${count}"
+diverged = "+${ahead_count}-${behind_count}"
+
+[python]
+symbol = "py "
+style = "yellow"
+format = "[$symbol($version )(\\($virtualenv\\) )]($style)"
+
+[cmd_duration]
+min_time = 2000
+style = "bright-black"
+format = "[took $duration]($style) "
+
+[status]
+disabled = false
+symbol = "x "
+style = "red"
+format = "[$symbol$status]($style) "
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
+vimcmd_symbol = "[<](bold cyan)"

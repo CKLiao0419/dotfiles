@@ -1,0 +1,79 @@
+# lf —— 終端檔案管理器
+# 看圖策略（previewer 腳本自動判斷）：
+#   kitty 且不在 tmux 裡 → kitten icat（真正的圖片）
+#   其他終端 / tmux 裡 / 老機器 → chafa 用字元畫出來
+#   都沒有 → 只顯示檔案類型
+# 你之前參考的 gnuunixchad 用的是 `chafa -f sixel`，kitty 不支援 sixel，
+# 而且他寫死了 /usr/bin/chafa（Mac 的 chafa 在 /opt/homebrew/bin），所以在 Mac 上一定出不來。
+
+set shell sh
+set shellopts '-eu'
+set ifs "\n"
+
+set previewer ~/.config/lf/previewer
+set cleaner ~/.config/lf/cleaner
+set preview true
+set ratios 1:2:3
+set drawbox true
+set icons true
+set scrolloff 8
+set hidden false
+set info size
+set dircounts true
+set incsearch true
+set incfilter true
+set mouse true
+
+# Nord 色系的提示列與邊框
+set promptfmt "\033[1;36m%u\033[0;35m@%h\033[0m \033[1;34m%d\033[0m\033[1;37m%f\033[0m"
+set borderfmt "\033[90m"
+set cursoractivefmt "\033[7m"
+
+# ---------- 按鍵 ----------
+map . set hidden!
+map <enter> open
+map <backspace2> set hidden!
+map D delete
+map R reload
+map x cut
+map y copy
+map p paste
+
+# g 開頭：跳到常用資料夾
+map gh cd ~
+map gc cd ~/.config
+map gd cd ~/dotfiles
+map gD cd ~/Downloads
+
+# Ctrl-F：用 fzf 搜尋並跳到檔案
+map <c-f> :fzf_jump
+
+cmd fzf_jump ${{
+    if command -v fd >/dev/null 2>&1; then
+        res="$(fd --hidden --exclude .git --max-depth 5 | fzf --header='跳到…')"
+    else
+        res="$(find . -maxdepth 5 -not -path '*/.git/*' | fzf --header='跳到…')"
+    fi
+    [ -n "$res" ] || exit 0
+    if [ -d "$res" ]; then cmd=cd; else cmd=select; fi
+    lf -remote "send $id $cmd \"$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+}}
+
+# 新增資料夾 / 檔案
+map a push :mkdir<space>
+map A push :touch<space>
+cmd mkdir %mkdir -p "$@"
+cmd touch %touch "$@"
+
+# 解壓縮
+cmd extract ${{
+    case "$f" in
+        *.tar.gz|*.tgz) tar xzf "$f" ;;
+        *.tar.xz) tar xJf "$f" ;;
+        *.tar.bz2) tar xjf "$f" ;;
+        *.tar) tar xf "$f" ;;
+        *.zip) unzip "$f" ;;
+        *) echo "不支援的格式" ;;
+    esac
+}}
+map E extract

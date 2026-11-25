@@ -1,0 +1,4 @@
+# bat —— 有語法高亮的 cat
+--theme="Nord"
+--style="numbers,changes,header"
+--italic-text=always

@@ -1,0 +1,9 @@
+# 保險：萬一機器專屬檔案不小心被放進 repo 也不會被 commit
+local.fish
+local.conf
+local*.conf
+*.local
+.bashrc.local
+fish_variables
+
+.DS_Store

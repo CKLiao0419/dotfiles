@@ -1,0 +1,35 @@
+# 共用的 git 設定（會進 dotfiles repo，公開）
+# 你的名字和 email 放在 ~/.gitconfig —— 那個檔案不進 repo，所以 email 不會公開
+# git 會同時讀這兩個檔案，~/.gitconfig 優先。
+
+[init]
+	defaultBranch = main
+[pull]
+	ff = only            # pull 時只允許快轉，不會偷偷產生 merge commit
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = default
+[merge]
+	conflictstyle = zdiff3
+
+# 有 delta 就用 delta 顯示 diff，老機器沒裝就退回 less
+[core]
+	pager = "if command -v delta >/dev/null 2>&1; then delta; else less -FRX; fi"
+[interactive]
+	diffFilter = "if command -v delta >/dev/null 2>&1; then delta --color-only; else cat; fi"
+[delta]
+	navigate = true
+	line-numbers = true
+	syntax-theme = Nord
+	file-style = bold "#88C0D0"
+	hunk-header-style = file line-number syntax
+
+[alias]
+	st = status -sb
+	lg = log --graph --pretty=format:'%C(#81A1C1)%h%Creset %C(#EBCB8B)%d%Creset %s %C(#616E88)(%cr, %an)%Creset' --abbrev-commit -20
+	last = log -1 --stat
+	undo = reset --soft HEAD~1
+	amend = commit --amend --no-edit
