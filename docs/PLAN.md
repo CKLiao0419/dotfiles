@@ -75,7 +75,7 @@ fish、starship、tmux、kitty、lf、bat、eza、lazygit、btop、fastfetch 全
 每台機器的不同之處都寫在 `local.*` 檔案。如果某個差異「每台 Linux 都要」，就搬進 repo 用 `switch (uname -s)` 判斷。
 
 ## 五、之後要做的
-- [ ] 把 repo 推上 GitHub
+- [x] 把 repo 推上 GitHub
 - [x] 重構 nvim
 - [ ] 告訴我你欣賞老師 tmux 的哪些地方，合進來
 - [ ] Linux TTY 的 Nord 色票腳本

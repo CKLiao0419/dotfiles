@@ -3,7 +3,7 @@
 Nord 主題、跨 macOS / Linux、從 Apple Silicon 到 32 位元 ThinkPad R50e 都能用的終端設定。
 
 ```sh
-git clone https://github.com/<你的帳號>/dotfiles ~/dotfiles
+git clone https://github.com/CKLiao0419/dotfiles ~/dotfiles
 cd ~/dotfiles && ./install.sh
 ```
 

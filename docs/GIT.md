@@ -18,7 +18,7 @@ repo 已經在本機建好、也做了第一個 commit。接下來：
 # 1) 在 github.com 按 New repository，名字取 dotfiles，Public，「不要」勾 README
 # 2) 回到終端：
 cd ~/dotfiles
-git remote add origin git@github.com:<你的帳號>/dotfiles.git
+git remote add origin git@github.com:CKLiao0419/dotfiles.git
 git push -u origin main
 ```
 
@@ -59,12 +59,12 @@ kitty: 字體改成 18 號
 ## 3. 新機器：一行部署
 
 ```sh
-git clone https://github.com/<你的帳號>/dotfiles ~/dotfiles
+git clone https://github.com/CKLiao0419/dotfiles ~/dotfiles
 cd ~/dotfiles && ./install.sh
 ```
 公開 repo 用 https clone 不需要登入。之後想在這台 push，再設 SSH key 並：
 ```sh
-git remote set-url origin git@github.com:<你的帳號>/dotfiles.git
+git remote set-url origin git@github.com:CKLiao0419/dotfiles.git
 ```
 
 ## 4. 多台機器同步
