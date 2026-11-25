@@ -2,6 +2,8 @@
 local.fish
 local.conf
 local*.conf
+local.toml
+local.lua
 *.local
 .bashrc.local
 fish_variables

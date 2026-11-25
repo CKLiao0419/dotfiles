@@ -7,6 +7,13 @@ file=$1 w=$2 h=$3 x=$4 y=$5
 has() { command -v "$1" >/dev/null 2>&1; }
 
 preview_image() {
+    # 0. ueberzugpp（Linux X11 + alacritty / st 這類不支援圖片協定的終端）
+    #    由 lfcd（fish 的 Ctrl-O）啟動 ueberzugpp 並設定 UB_SOCKET
+    if [ -n "${UB_SOCKET:-}" ] && has ueberzugpp; then
+        ueberzugpp cmd -s "$UB_SOCKET" -a add -i PREVIEW -x "$x" -y "$y" \
+            --max-width "$w" --max-height "$h" -f "$1"
+        exit 1
+    fi
     # 1. kitty 本體（不在 tmux 裡）：用 kitty 圖片協定畫真正的圖
     if [ -n "$KITTY_WINDOW_ID" ] && [ -z "$TMUX" ] && has kitten; then
         kitten icat --stdin=no --transfer-mode=memory \

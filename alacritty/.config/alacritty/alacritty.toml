@@ -1,0 +1,60 @@
+# alacritty —— Linux（X11 / Wayland）主力終端，macOS 也能用
+# 需要 alacritty 0.14 以上（設定格式在 0.14 改過；Debian 13 是 0.15）
+#
+# alacritty 刻意不做分頁和分割視窗 → 交給 tmux
+# 這台機器專屬的設定（字體大小、透明度）寫在 local.toml，不進 git
+# 存檔後會自動重新載入，不用重開
+
+[general]
+import = [
+    "~/.config/alacritty/nord.toml",
+    "~/.config/alacritty/local.toml",   # 不存在也沒關係，只會在 log 留一行警告
+]
+live_config_reload = true
+
+[window]
+padding = { x = 6, y = 6 }
+dynamic_padding = true        # 多出來的空間平均分給四邊，文字不會貼著左上角
+decorations = "Full"
+# 透明度：1.0 = 不透明。X11 上要有合成器（picom）才會真的透明
+# 想要半透明就在 local.toml 寫：
+#   [window]
+#   opacity = 0.85
+opacity = 1.0
+# 毛玻璃：alacritty 只在 macOS 和 KDE Wayland 有效
+# X11 的毛玻璃要交給 picom 做（見 docs/TERMINALS.md）
+blur = false
+option_as_alt = "Both"        # macOS：option 鍵當 Alt（nvim 的 Alt-j/k 要用）
+
+[scrolling]
+history = 10000
+
+[font]
+# Linux 上用完整版 Nerd Font（字型名稱用 fc-list | grep -i jetbrains 確認）
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+size = 11.0
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+unfocused_hollow = true
+
+[selection]
+save_to_clipboard = true      # 選取就複製
+
+[mouse]
+hide_when_typing = true
+
+[bell]
+duration = 0
+
+[keyboard]
+bindings = [
+    # 在目前的資料夾開一個新視窗（alacritty 沒有分頁，用多開視窗代替）
+    { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+    # 字體大小：Ctrl + = / - / 0
+    { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+    { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+    { key = "Key0", mods = "Control", action = "ResetFontSize" },
+]

@@ -48,10 +48,16 @@ else
         d=${d%/}
         case $d in (docs|packages) ;; (*) echo "$d" ;; esac
     done)
-    # kitty 只在 Mac 上預設部署（老 ThinkPad 跑不動 kitty）
-    if [ "$(uname -s)" != Darwin ] && ! command -v kitty >/dev/null 2>&1; then
-        PKGS=$(echo "$PKGS" | grep -vx kitty)
-    fi
+    # 圖形終端的設定：這台有裝那個終端才部署（老機器不會多一堆用不到的設定）
+    for term in kitty alacritty; do
+        if command -v "$term" >/dev/null 2>&1; then continue; fi
+        # macOS 的 App 通常不在 PATH 裡，另外檢查 /Applications
+        case $term in
+            (kitty) [ -d /Applications/kitty.app ] && continue ;;
+            (alacritty) [ -d /Applications/Alacritty.app ] && continue ;;
+        esac
+        PKGS=$(echo "$PKGS" | grep -vx "$term")
+    done
 fi
 
 if [ $MODE = delete ]; then

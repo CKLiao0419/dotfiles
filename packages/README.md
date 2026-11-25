@@ -8,8 +8,11 @@ git stow fish tmux vim (或 neovim) less file
 ## 第二層：好用（64 位元機器都裝）
 starship eza bat fd ripgrep fzf zoxide lf chafa lazygit git-delta btop fastfetch
 
-## 第三層：圖形終端（有 OpenGL 3.3 的機器：Mac、X220i、A1466）
-kitty + Nerd Font
+## 第三層：圖形終端（見 docs/TERMINALS.md）
+- macOS：kitty
+- Linux X11：alacritty + picom（透明 / 毛玻璃）+ ueberzugpp（lf 看圖）
+- Linux Wayland：foot（之後再設定）
+- 都要裝 JetBrainsMono Nerd Font
 
 ## 各發行版指令
 
@@ -21,7 +24,7 @@ sudo apt install git stow fish tmux neovim fzf ripgrep fd-find bat eza zoxide lf
 
 Arch
 ```sh
-sudo pacman -S git stow fish tmux neovim starship eza bat fd ripgrep fzf zoxide lf chafa lazygit git-delta btop fastfetch tealdeer
+sudo pacman -S alacritty picom ueberzugpp ttf-jetbrains-mono-nerd git stow fish tmux neovim starship eza bat fd ripgrep fzf zoxide lf chafa lazygit git-delta btop fastfetch tealdeer
 ```
 
 Void

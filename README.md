@@ -15,7 +15,7 @@ cd ~/dotfiles && ./install.sh
 dotfiles/
 ├── fish/.config/fish/...        → ~/.config/fish/...
 ├── tmux/.config/tmux/tmux.conf  → ~/.config/tmux/tmux.conf
-├── starship/  kitty/  lf/  bat/  git/  lazygit/  btop/  fastfetch/  bash/
+├── starship/  kitty/  alacritty/  nvim/  vim/  lf/  bat/  git/  lazygit/  btop/  fastfetch/  bash/
 ├── packages/   各平台要裝的軟體（不是 stow 套件）
 ├── docs/       規劃與教學（不是 stow 套件）
 └── install.sh  一鍵部署
@@ -29,9 +29,12 @@ dotfiles/
 | `~/.config/fish/local.fish` | 這台機器的 PATH、API key |
 | `~/.config/tmux/local.conf` | 例如 eeePC 想把狀態列移到上面 |
 | `~/.config/kitty/local.conf` | 這台的字體大小 |
+| `~/.config/alacritty/local.toml` | 這台的字體大小、透明度 |
+| `~/.config/nvim/lua/config/local.lua` | nvim 的單機設定 |
 | `~/.bashrc.local` | bash 備援用 |
 
 ## 文件
 - [docs/PLAN.md](docs/PLAN.md) — 軟體選型、各機器分層、rice 路線圖
 - [docs/GIT.md](docs/GIT.md) — 怎麼用 git 管理這份 config
 - [docs/CHEATSHEET.md](docs/CHEATSHEET.md) — 快捷鍵速查
+- [docs/TERMINALS.md](docs/TERMINALS.md) — Linux 終端選型（alacritty / foot / st）

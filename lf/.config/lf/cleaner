@@ -1,5 +1,7 @@
 #!/bin/sh
-# 離開圖片時清掉 kitty 畫上去的圖（chafa 是文字，不用清）
-if [ -n "$KITTY_WINDOW_ID" ] && [ -z "$TMUX" ] && command -v kitten >/dev/null 2>&1; then
+# 離開圖片時把畫上去的圖清掉（chafa 是文字，不用清）
+if [ -n "${UB_SOCKET:-}" ] && command -v ueberzugpp >/dev/null 2>&1; then
+    ueberzugpp cmd -s "$UB_SOCKET" -a remove -i PREVIEW
+elif [ -n "${KITTY_WINDOW_ID:-}" ] && [ -z "${TMUX:-}" ] && command -v kitten >/dev/null 2>&1; then
     kitten icat --clear --stdin=no --silent --transfer-mode=memory </dev/null >/dev/tty
 fi

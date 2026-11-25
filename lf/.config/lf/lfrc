@@ -1,5 +1,6 @@
 # lf —— 終端檔案管理器
 # 看圖策略（previewer 腳本自動判斷）：
+#   Linux X11 + 有裝 ueberzugpp，用 Ctrl-O（lfcd）開 → ueberzugpp 疊圖（alacritty / st 用這個）
 #   kitty 且不在 tmux 裡 → kitten icat（真正的圖片）
 #   其他終端 / tmux 裡 / 老機器 → chafa 用字元畫出來
 #   都沒有 → 只顯示檔案類型
