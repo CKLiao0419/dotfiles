@@ -58,7 +58,7 @@ stow **不是**像 git 那樣的版本控制工具，兩個是**分工合作**�
 ### 階段 1：終端層（這次在 Mac 上完成）✅
 fish、starship、tmux、kitty、lf、bat、eza、lazygit、btop、fastfetch 全部 Nord。
 
-### 階段 2：neovim 重構
+### 階段 2：neovim 重構 ✅
 你把現在的 `init.lua` 給我，拆成 `lua/` 模組、Nord 主題，並加一份不需要外掛的 `vimrc` 給 C 層機器。之後放進 `nvim/` 套件。
 
 ### 階段 3：第一台 ThinkPad（建議從 X220i 開始）
@@ -76,6 +76,6 @@ fish、starship、tmux、kitty、lf、bat、eza、lazygit、btop、fastfetch 全
 
 ## 五、之後要做的
 - [ ] 把 repo 推上 GitHub
-- [ ] 重構 nvim
+- [x] 重構 nvim
 - [ ] 告訴我你欣賞老師 tmux 的哪些地方，合進來
 - [ ] Linux TTY 的 Nord 色票腳本
